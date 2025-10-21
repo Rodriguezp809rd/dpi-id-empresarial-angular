@@ -1,0 +1,140 @@
+<div class="bg-[#F9FAFB] rounded-xl p-8 w-full flex flex-col gap-6">
+  <div>
+    <h2 class="text-[20px] font-semibold text-[#003366]">
+      Selecciona una empresa
+    </h2>
+    <p class="text-[#5F6368] text-[15px] mt-1">
+      Elige la empresa para la cual deseas crear los documentos digitales.
+    </p>
+  </div>
+
+  <!-- LISTA DE EMPRESAS -->
+  <div class="flex flex-col gap-4 w-full">
+    <div
+      *ngFor="let company of companies"
+      class="flex flex-col items-start gap-4 p-8 rounded-[12px] border transition-all duration-200 w-full"
+      [ngClass]="{
+        'border-[#22C55E] bg-[#F9FFF9] shadow-[0_0_0_1px_#22C55E]':
+          selectedCompany?.name === company.name,
+        'border-[#E5E7EB] bg-white hover:shadow-md cursor-pointer':
+          !selectedCompany || selectedCompany?.name !== company.name,
+        'opacity-60 bg-[#F5F6F7] cursor-not-allowed': !company.active
+      }"
+      (click)="selectCompany(company)"
+    >
+      <!-- Estado de selección -->
+      <div
+        *ngIf="selectedCompany?.name === company.name"
+        class="flex items-center gap-2 border border-[#22C55E] rounded-t-[8px] bg-[#F9FFF9] px-3 py-1 text-[#15803D] text-sm font-medium mb-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4 text-[#22C55E]"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+        Empresa seleccionada
+      </div>
+
+      <!-- Info de empresa -->
+      <div class="flex justify-between items-center w-full">
+        <h3
+          class="text-[17px] font-semibold"
+          [ngClass]="{
+            'text-[#22C55E]': selectedCompany?.name === company.name,
+            'text-[#003366]':
+              company.active && selectedCompany?.name !== company.name,
+            'text-[#A0A3A7]': !company.active
+          }"
+        >
+          {{ company.name }}
+        </h3>
+
+        <button
+          class="text-white text-[14px] font-medium rounded-full px-5 py-[6px] transition-all duration-200"
+          [ngClass]="{
+            'bg-[#003366] hover:bg-[#002244]':
+              company.active && selectedCompany?.name !== company.name,
+            'bg-[#22C55E] cursor-default':
+              selectedCompany?.name === company.name,
+            'bg-[#DADDE1] cursor-not-allowed': !company.active
+          }"
+          (click)="selectCompany(company)"
+        >
+          {{
+            selectedCompany?.name === company.name
+              ? "Seleccionada"
+              : company.active
+              ? "Seleccionar"
+              : "Inactiva"
+          }}
+        </button>
+      </div>
+
+      <div
+        class="grid grid-cols-4 gap-x-8 text-[14px] text-[#333] font-normal w-full"
+      >
+        <div class="flex flex-col">
+          <span class="text-[#5F6368] text-[13px]">RNC</span>
+          <span>{{ company.rnc }}</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-[#5F6368] text-[13px]">Registro Mercantil</span>
+          <span>{{ company.mercantile }}</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-[#5F6368] text-[13px]">Cargo</span>
+          <span>{{ company.position }}</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-[#5F6368] text-[13px]">Vigencia</span>
+          <span>{{ company.validity }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje informativo -->
+  <div
+    *ngIf="selectedCompany"
+    class="mt-6 flex items-start gap-2 bg-[#F3F4F6] text-[#4B5563] text-[13px] p-4 rounded-lg border border-[#E5E7EB]"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      class="w-5 h-5 text-[#6B7280] mt-[2px]"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L4.34 16c-.77 1.333.192 3 1.732 3z"
+      />
+    </svg>
+    <p class="leading-snug">
+      Al continuar, autorizas que las instituciones oficiales (Cámara de
+      Comercio, DGII, ONAPI) entreguen tus documentos digitales de empresa a
+      esta Carpeta. Todo acorde a la Ley No. 172-13 de Protección de los Datos.
+    </p>
+  </div>
+
+  <!-- Botón continuar -->
+  <div *ngIf="selectedCompany" class="flex justify-end w-full mt-4">
+    <button
+      (click)="continue()"
+      class="bg-[#003366] text-white px-6 py-2 rounded-md hover:bg-[#002244] transition-all duration-200"
+    >
+      Continuar
+    </button>
+  </div>
+</div>

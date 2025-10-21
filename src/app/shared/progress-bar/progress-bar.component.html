@@ -1,0 +1,49 @@
+<div class="flex flex-col items-start bg-white rounded-xl p-4 w-full shadow-sm">
+  <!-- Header -->
+  <div class="flex justify-between items-center w-full mb-2">
+    <span class="text-sm font-medium text-gray-700">Progreso</span>
+    <span class="text-sm font-semibold text-[#3D7FB1]">
+      {{ percentLabel }}%
+    </span>
+  </div>
+
+  <!-- Línea de progreso -->
+  <div
+    class="relative flex h-[10px] items-center rounded-full bg-[#ECEDEE] w-full overflow-hidden"
+  >
+    <div
+      class="absolute top-0 left-0 h-[10px] bg-[#3D7FB1] rounded-full transition-[width] duration-700 ease-in-out"
+      [style.width.%]="displayPercent"
+    ></div>
+  </div>
+
+  <!-- Steps -->
+  <!-- Steps -->
+  <div class="flex justify-between w-full mt-4 text-xs font-medium">
+    <div
+      *ngFor="let step of steps; let i = index"
+      class="flex flex-col items-center w-full"
+    >
+      <!-- Punto -->
+      <div
+        class="h-2 w-2 rounded-full mb-1 transition-all duration-300"
+        [ngClass]="{
+          'bg-[#28A745]': i <= currentStepIndex,
+          'bg-[#3D7FB1]': i === currentStepIndex + 1,
+          'bg-gray-300': i > currentStepIndex + 1
+        }"
+      ></div>
+
+      <!-- Texto -->
+      <span
+        [ngClass]="{
+          'text-[#28A745] font-semibold': i <= currentStepIndex,
+          'text-[#3D7FB1] font-semibold': i === currentStepIndex + 1,
+          'text-gray-500': i > currentStepIndex + 1
+        }"
+      >
+        {{ step }}
+      </span>
+    </div>
+  </div>
+</div>

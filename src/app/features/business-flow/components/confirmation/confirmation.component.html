@@ -1,0 +1,125 @@
+<div class="bg-[#F9FAFB] rounded-xl p-8 w-full flex flex-col gap-6">
+  <div>
+    <h2 class="text-[20px] font-semibold text-[#003366]">
+      Confirmación y consentimiento
+    </h2>
+    <p class="text-[#5F6368] text-[15px] mt-1">
+      Confirma los datos de la empresa seleccionada y otorga tu consentimiento.
+    </p>
+  </div>
+
+  <div
+    *ngIf="selectedCompany"
+    class="flex flex-col items-start gap-4 p-8 rounded-[12px] border border-[#22C55E] bg-[#F9FFF9]"
+  >
+    <div
+      class="flex items-center gap-2 border border-[#22C55E] rounded-t-[8px] bg-[#F9FFF9] px-3 py-1 text-[#15803D] text-sm font-medium mb-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="w-4 h-4 text-[#22C55E]"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5 13l4 4L19 7"
+        />
+      </svg>
+      Empresa seleccionada
+    </div>
+
+    <h3 class="text-[17px] font-semibold text-[#22C55E]">
+      {{ selectedCompany.name }}
+    </h3>
+
+    <div
+      class="grid grid-cols-4 gap-x-8 text-[14px] text-[#333] font-normal w-full"
+    >
+      <div class="flex flex-col">
+        <span class="text-[#5F6368] text-[13px]">RNC</span>
+        <span>{{ selectedCompany.rnc }}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[#5F6368] text-[13px]">Registro Mercantil</span>
+        <span>{{ selectedCompany.mercantile }}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[#5F6368] text-[13px]">Cargo</span>
+        <span>{{ selectedCompany.position }}</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[#5F6368] text-[13px]">Vigencia</span>
+        <span>{{ selectedCompany.validity }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="selectedCompany"
+    class="mt-6 flex items-start gap-2 bg-[#F3F4F6] text-[#4B5563] text-[13px] p-4 rounded-lg border border-[#E5E7EB]"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      class="w-5 h-5 text-[#6B7280] mt-[2px]"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L4.34 16c-.77 1.333.192 3 1.732 3z"
+      />
+    </svg>
+    <p class="leading-snug">
+      Al continuar, autorizas que las instituciones oficiales (Cámara de
+      Comercio, DGII, ONAPI) entreguen tus documentos digitales de empresa a
+      esta Carpeta. Todo acorde a la Ley No. 172-13 de Protección de los Datos.
+    </p>
+  </div>
+
+  <div class="flex justify-end w-full mt-4 gap-3">
+    <button
+      (click)="goBack()"
+      class="flex items-center gap-2 border border-[#003366] text-[#003366] px-5 py-2 rounded-md hover:bg-[#EEF6FF] transition"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="w-4 h-4"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+      Volver
+    </button>
+
+    <button
+      (click)="confirmAndContinue()"
+      class="flex items-center gap-2 bg-[#003366] text-white px-6 py-2 rounded-md hover:bg-[#002244] transition"
+    >
+      Confirmar y continuar
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="w-4 h-4"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</div>

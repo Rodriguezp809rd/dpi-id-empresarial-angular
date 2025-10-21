@@ -1,0 +1,7 @@
+<div class="progress-header w-full flex flex-col gap-3">
+  <div *ngIf="showBackButton" class="mb-2">
+    <app-back-button (goBack)="onBack()"></app-back-button>
+  </div>
+
+  <app-progress-bar [currentStepIndex]="currentStepIndex"></app-progress-bar>
+</div>

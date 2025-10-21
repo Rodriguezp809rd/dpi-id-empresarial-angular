@@ -1,0 +1,213 @@
+<div
+  class="flex flex-col items-start gap-8 max-w-[1200px] mx-auto pt-4 pb-[92px] px-0 flex-1 font-[Poppins]"
+>
+  <!-- <div class="w-full">
+    <app-progress-header></app-progress-header>
+  </div> -->
+
+  <section
+    class="flex flex-col items-start p-8 rounded-xl bg-white w-full gap-8"
+  >
+    <!-- Título -->
+    <h2
+      class="self-stretch text-[#003876] font-semibold text-[26px] leading-[34px]"
+    >
+      Antes de comenzar
+    </h2>
+
+    <!-- Subtítulo -->
+    <p class="text-[#343637] text-[16px] font-normal leading-normal">
+      Asegúrate de tener toda la información necesaria para completar el
+      proceso.
+    </p>
+
+    <!-- Contenedor gris informativo -->
+    <div
+      class="flex items-start gap-3 p-3 rounded-lg border border-[#DDDEE1] bg-[#F7F7F8] self-stretch"
+    >
+      <img
+        src="assets/icons/preparation/time.svg"
+        alt="info"
+        class="w-5 h-5 mt-[2px]"
+      />
+      <p class="text-[#696A6E] text-[16px] leading-normal">
+        Este proceso tomará aproximadamente 5–10 minutos. Recomendamos
+        completarlo en una sola sesión.
+      </p>
+    </div>
+
+    <!-- Grid principal -->
+    <div class="grid md:grid-cols-2 gap-6 w-full">
+      <!-- Requisitos Previos -->
+      <div
+        class="flex flex-col items-start flex-1 border border-[#DDDEE1] rounded-lg p-[24px] pt-[24px] pb-[32px] bg-white"
+      >
+        <h3 class="text-blue-1 text-[18px] font-semibold mb-6">
+          Requisitos Previos
+        </h3>
+
+        <div class="flex flex-col gap-5 text-[15px] text-gray-5 w-full">
+          <!-- Item 1 -->
+          <div class="flex items-start gap-4">
+            <img
+              src="assets/icons/preparation/activeAccount.svg"
+              alt="Cuenta Única"
+              class="w-6 h-6 mt-1"
+            />
+            <div>
+              <p class="font-semibold text-[#343637]">Cuenta Única Activa</p>
+              <p class="leading-relaxed">
+                Debes tener una cuenta válida en el sistema de Cuenta Única del
+                gobierno. Si aún no tienes una cuenta,
+                <a href="#" class="text-blue-1 font-medium hover:underline"
+                  >haz clic aquí</a
+                >.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="flex items-start gap-4">
+            <img
+              src="assets/icons/preparation/legalRepresentation.svg"
+              alt="Representación Legal"
+              class="w-6 h-6 mt-1"
+            />
+            <div>
+              <p class="font-semibold text-[#343637]">
+                Representación Legal o Gerente
+              </p>
+              <p class="leading-relaxed">
+                Ser representante legal o gerente registrado de al menos una
+                empresa activa.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="flex items-start gap-4">
+            <img
+              src="assets/icons/preparation/mobile.svg"
+              alt="Dispositivo Móvil"
+              class="w-6 h-6 mt-1"
+            />
+            <div>
+              <p class="font-semibold text-[#343637]">Dispositivo Móvil</p>
+              <p class="leading-relaxed">
+                Para recibir códigos de verificación y usar la app de carpeta
+                digital empresarial.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Descarga App -->
+      <div
+        class="flex flex-col items-start flex-1 border border-[#DDDEE1] rounded-lg p-[24px] pt-[24px] pb-[32px] bg-white"
+      >
+        <h3 class="text-blue-1 text-[18px] font-semibold mb-4">
+          Descarga en tu móvil la app de Carpeta Única Empresarial
+        </h3>
+
+        <p class="text-[15px] text-gray-5 leading-relaxed mb-6">
+          Para acceder a tus documentos digitales, necesitarás tener instalada
+          la aplicación de
+          <span class="font-medium text-[#343637]"
+            >Carpeta Única Empresarial</span
+          >
+          en tu dispositivo móvil.
+        </p>
+
+        <div class="flex flex-wrap gap-3 w-full">
+          <!-- Botón App Store -->
+          <button
+            class="flex justify-center items-center gap-[10px] min-w-[170px] px-[24px] py-[9px] border border-[#DDDEE1] rounded-full flex-1 hover:bg-[#F5F5F5] transition w-full sm:w-auto"
+          >
+            <img
+              src="assets/icons/preparation/apple.svg"
+              alt="App Store"
+              class="w-6 h-6"
+            />
+            <span class="text-[15px] font-medium text-[#343637]"
+              >App Store</span
+            >
+          </button>
+
+          <!-- Botón Google Play -->
+          <button
+            class="flex justify-center items-center gap-[10px] min-w-[170px] px-[24px] py-[9px] border border-[#DDDEE1] rounded-full flex-1 hover:bg-[#F5F5F5] transition w-full sm:w-auto"
+          >
+            <img
+              src="assets/icons/preparation/playstore.svg"
+              alt="Google Play"
+              class="w-6 h-6"
+            />
+            <span class="text-[15px] font-medium text-[#343637]"
+              >Google Play</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentos que recibirás -->
+    <div class="w-full border border-[#DDDEE1] rounded-lg p-6">
+      <h3 class="text-[#003366] font-semibold mb-3 text-[16px]">
+        ¿Qué documentos recibirás?
+      </h3>
+      <div class="grid grid-cols-2 text-[#343637] text-[15px] gap-y-2">
+        <ul class="list-none ml-0 space-y-2">
+          <li
+            class="relative pl-6 before:content-['◆'] before:text-[#1E64C8] before:absolute before:left-0 before:top-[2px]"
+          >
+            Identidad Empresarial
+          </li>
+          <li
+            class="relative pl-6 before:content-['◆'] before:text-[#1E64C8] before:absolute before:left-0 before:top-[2px]"
+          >
+            Registro Nacional del Contribuyente
+          </li>
+          <li
+            class="relative pl-6 before:content-['◆'] before:text-[#1E64C8] before:absolute before:left-0 before:top-[2px]"
+          >
+            Estatutos de la Empresa
+          </li>
+        </ul>
+
+        <ul class="list-none ml-0 space-y-2">
+          <li
+            class="relative pl-6 before:content-['◆'] before:text-[#1E64C8] before:absolute before:left-0 before:top-[2px]"
+          >
+            Certificado de Buen Standing
+          </li>
+          <li
+            class="relative pl-6 before:content-['◆'] before:text-[#1E64C8] before:absolute before:left-0 before:top-[2px]"
+          >
+            Nombre Comercial
+          </li>
+          <li
+            class="relative pl-6 before:content-['◆'] before:text-[#1E64C8] before:absolute before:left-0 before:top-[2px]"
+          >
+            Acta Constitutiva
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Botón continuar -->
+    <div class="w-full flex justify-end mt-6">
+      <button
+        (click)="nextStep()"
+        class="flex items-center justify-center gap-[10px] bg-[#003366] text-white px-6 py-[9px] border border-[#DDDEE1] rounded-full hover:bg-[#002244] font-medium transition-all"
+      >
+        <span>Comenzar</span>
+        <img
+          src="assets/icons/preparation/arrow.svg"
+          alt="Arrow Icon"
+          class="w-[18px] h-[18px]"
+        />
+      </button>
+    </div>
+  </section>
+</div>

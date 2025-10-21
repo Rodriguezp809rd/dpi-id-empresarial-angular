@@ -1,0 +1,23 @@
+<button
+  *ngIf="showButton"
+  (click)="onBack()"
+  class="flex items-center gap-2 px-6 py-[9px] rounded-full bg-[#F7F7F8] border border-[#DDDEE1] hover:bg-[#EDEDEE] transition-all"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    class="text-[#1A1A1A]"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M15 19l-7-7 7-7"
+    />
+  </svg>
+  <span class="text-[#1A1A1A] font-semibold text-[15px]">Volver</span>
+</button>

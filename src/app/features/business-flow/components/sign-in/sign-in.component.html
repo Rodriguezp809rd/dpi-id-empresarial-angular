@@ -1,0 +1,139 @@
+<!-- Vista 1: Pantalla inicial -->
+<div
+  *ngIf="!showLoginForm"
+  class="flex flex-col items-start gap-8 max-w-[1200px] mx-auto pt-4 pb-[92px] px-0 flex-1"
+>
+  <section class="w-full mx-auto">
+    <div
+      class="flex flex-col items-start justify-start bg-white rounded-lg shadow p-8 text-left"
+    >
+      <h2 class="text-2xl font-bold text-[#003366] mb-2">Iniciar Sesión</h2>
+
+      <p class="text-gray-600 mb-6">
+        Identifícate con tu
+        <span class="text-blue-700 font-medium">Cuenta Única Digital</span>
+        para poder continuar con el proceso de creación de tu Carpeta
+        Empresarial. Si aún no tienes una cuenta,
+        <a href="#" class="text-blue-700 hover:underline">haz clic aquí.</a>
+      </p>
+
+      <button
+        (click)="toggleLogin()"
+        class="flex items-center justify-center gap-3 bg-[#F7F7F8] text-[#343637] border border-[#DDDEE1] px-6 py-3 rounded-lg hover:bg-[#EEF6FF] hover:border-[#AECCEF] transition-all duration-200"
+      >
+        <img
+          src="assets/icons/sign-in/sign-in.svg"
+          alt="Cuenta Única Digital"
+          class="w-5 h-5"
+        />
+        <span class="font-medium">CONTINUAR CON CUENTA ÚNICA DIGITAL</span>
+        <img src="assets/icons/sign-in/arrow.svg" alt="Arrow" class="w-4 h-4" />
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- Vista 2: Formulario de Login -->
+<div
+  *ngIf="showLoginForm"
+  class="flex justify-center items-center bg-[#003366] w-full rounded-xl py-20"
+>
+  <div
+    class="bg-white rounded-lg shadow-lg p-10 w-[400px] flex flex-col items-center"
+  >
+    <img
+      src="assets/icons/auth/logo-carpeta-unica.svg"
+      alt="Cuenta Única"
+      class="h-10 mb-6"
+    />
+
+    <h2 class="text-xl font-semibold text-gray-800 mb-2">Sign in</h2>
+    <div class="w-12 h-[2px] bg-gray-300 mb-6"></div>
+
+    <form
+      [formGroup]="signInForm"
+      (ngSubmit)="onSubmit()"
+      class="w-full flex flex-col gap-4"
+    >
+      <div>
+        <label class="block text-sm text-gray-700 mb-1">ID *</label>
+        <input
+          type="text"
+          formControlName="id"
+          class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#003366]"
+          placeholder="40223153160"
+        />
+        <p
+          *ngIf="signInForm.get('id')?.touched && signInForm.get('id')?.invalid"
+          class="text-red-500 text-xs mt-1"
+        >
+          ID is required
+        </p>
+      </div>
+
+      <div class="relative">
+        <label class="block text-sm text-gray-700 mb-1">Password *</label>
+
+        <div class="relative">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            class="w-full border border-gray-300 rounded-md px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-[#003366]"
+            placeholder="********"
+          />
+
+          <!-- Ojito perfectamente centrado -->
+          <button
+            type="button"
+            (click)="togglePasswordVisibility()"
+            class="absolute inset-y-0 right-3 flex items-center justify-center text-gray-500 hover:text-[#003366] transition"
+          >
+            <img
+              *ngIf="!showPassword"
+              src="assets/icons/auth/eye-outline.svg"
+              alt="Show password"
+              class="w-5 h-5"
+            />
+            <img
+              *ngIf="showPassword"
+              src="assets/icons/auth/eye-off-outline.svg"
+              alt="Hide password"
+              class="w-5 h-5"
+            />
+          </button>
+        </div>
+
+        <p
+          *ngIf="
+            signInForm.get('password')?.touched &&
+            signInForm.get('password')?.invalid
+          "
+          class="text-red-500 text-xs mt-1"
+        >
+          Password is required
+        </p>
+      </div>
+
+      <a href="#" class="text-sm text-[#003366] text-left hover:underline"
+        >Forgot password?</a
+      >
+
+      <button
+        type="submit"
+        [disabled]="isLoading"
+        class="bg-[#003366] text-white py-2 rounded-md font-medium hover:bg-[#002244] transition-all duration-200 disabled:opacity-70"
+      >
+        {{ isLoading ? "Signing in..." : "Sign in with password" }}
+      </button>
+
+      <p class="text-sm text-gray-500 text-center mt-3">
+        Don’t have an account?
+        <a href="#" class="text-[#003366] hover:underline">Sign Up</a>
+      </p>
+
+      <p *ngIf="errorMessage" class="text-red-500 text-center text-sm mt-2">
+        {{ errorMessage }}
+      </p>
+    </form>
+  </div>
+</div>

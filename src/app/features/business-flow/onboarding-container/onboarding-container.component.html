@@ -1,0 +1,47 @@
+<div
+  [ngClass]="{
+    'flex flex-col items-start gap-8 max-w-[1200px] mx-auto pt-8 pb-[92px] flex-1 font-[Poppins]':
+      !isLoginFullscreen,
+    'min-h-screen flex items-center justify-center bg-[#003366] font-[Poppins]':
+      isLoginFullscreen
+  }"
+>
+  <!-- Progress header solo visible si NO estamos en la vista completa -->
+  <div class="w-full" *ngIf="!isLoginFullscreen">
+    <app-progress-header
+      [currentStep]="currentStep()"
+      [currentStepIndex]="getCurrentStepIndex()"
+      (goBack)="previousStep()"
+    ></app-progress-header>
+  </div>
+
+  <ng-container [ngSwitch]="currentStep()">
+    <app-preparation
+      *ngSwitchCase="'preparation'"
+      (next)="goTo('sign-in')"
+    ></app-preparation>
+
+    <app-sign-in
+      *ngSwitchCase="'sign-in'"
+      (next)="goTo('select-company')"
+      (showLoginFormChange)="onLoginFormChange($event)"
+    ></app-sign-in>
+
+    <app-select-company
+      *ngSwitchCase="'select-company'"
+      (next)="goTo('confirmation')"
+    ></app-select-company>
+
+    <app-confirmation
+      *ngSwitchCase="'confirmation'"
+      (next)="goTo('document-creation')"
+    ></app-confirmation>
+
+    <app-document-creation
+      *ngSwitchCase="'document-creation'"
+      (next)="goTo('completion')"
+    ></app-document-creation>
+
+    <app-completion *ngSwitchCase="'completion'"></app-completion>
+  </ng-container>
+</div>
