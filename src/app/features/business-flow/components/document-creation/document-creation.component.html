@@ -1,3 +1,110 @@
-<section class="max-w-5xl mx-auto p-6">
-  <!-- progreso de creación de documentos -->
+<section class="w-full mx-auto p-8 mt-[32px] bg-white rounded-xl shadow-sm">
+  <!-- Título -->
+  <h2 class="text-[22px] font-semibold text-[#003876] mb-2">
+    Creación de Documentos
+  </h2>
+  <p class="text-[#343637] text-[15px] mb-6">
+    Confirmaremos y emitiremos los documentos asociados a la empresa
+    <span class="text-[#003876] font-medium">Tecnología Avanzada S.R.L.</span>
+    a través de las instituciones correspondientes.
+  </p>
+
+  <!-- Estado 1: Loader -->
+  <div
+    *ngIf="isLoading"
+    class="flex flex-col items-center justify-center py-20"
+  >
+    <div
+      class="w-8 h-8 border-4 border-[#3D7FB1] border-t-transparent rounded-full animate-spin mb-4"
+    ></div>
+    <p class="text-[#696A6E] text-[15px]">
+      Generando documentos digitales de los emisores...
+    </p>
+  </div>
+
+  <!-- Estado 2: Progreso -->
+  <div *ngIf="!isLoading" class="flex flex-col gap-6">
+    <!-- Barra de progreso -->
+    <div class="flex justify-between items-center text-sm font-medium">
+      <span class="text-[#00A65A]">Confirmando documentos...</span>
+      <span class="text-[#3D7FB1]">{{ progress }}/100</span>
+    </div>
+    <div class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+      <div
+        class="h-1.5 bg-[#3D7FB1] rounded-full transition-all duration-500"
+        [style.width.%]="progress"
+      ></div>
+    </div>
+
+    <!-- Lista de documentos -->
+    <div class="flex flex-col gap-3">
+      <div
+        *ngFor="let doc of documents"
+        class="flex items-stretch border border-[#DDDEE1] rounded-lg bg-white w-full overflow-hidden"
+      >
+        <!-- Contenido -->
+        <div class="flex-1 px-6 py-4">
+          <h4 class="font-medium text-[#343637] text-[15px] leading-[22px]">
+            {{ doc.name }}
+          </h4>
+          <p class="text-[#696A6E] text-[14px] leading-[20px] mt-[2px]">
+            {{ doc.issuer }}
+          </p>
+        </div>
+
+        <!-- Columna de estado -->
+        <div
+          class="w-[88px] flex items-center justify-center transition-all duration-300"
+          [ngStyle]="{
+            backgroundColor: doc.loaded ? '#EBF5EE' : '#FFF2C7'
+          }"
+        >
+          <!-- Ícono SVG según estado -->
+          <div class="flex items-center justify-center">
+            <ng-container *ngIf="!doc.loaded; else completedIcon">
+              <!-- 🟡 Pendiente -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 26 26"
+                fill="none"
+              >
+                <path
+                  d="M13.0001 2.25769C7.09165 2.25769 2.25781 7.09152 2.25781 13C2.25781 18.9085 7.09165 23.7424 13.0001 23.7424C18.9086 23.7424 23.7425 18.9085 23.7425 13C23.7425 7.09152 18.9086 2.25769 13.0001 2.25769ZM13.8874 15.8698L9.62773 16.9174C9.45331 16.9607 9.27781 16.8534 9.23448 16.679L8.87264 15.2068C8.82931 15.0324 8.93656 14.8569 9.11098 14.8135L12.3826 14.0086L14.9718 6.21186C15.0281 6.04177 15.2123 5.94969 15.3824 6.00602L16.8221 6.48377C16.9922 6.54011 17.0843 6.72427 17.028 6.89436L14.1181 15.6564C14.0835 15.7625 13.9957 15.8427 13.8874 15.8698Z"
+                  fill="#C8A966"
+                />
+              </svg>
+            </ng-container>
+
+            <ng-template #completedIcon>
+              <!-- ✅ Completado -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 26 26"
+                fill="none"
+              >
+                <path
+                  d="M18.2334 3.25H7.77058C5.30167 3.25 3.28125 5.27042 3.28125 7.73933V18.2011C3.28125 20.67 5.30167 22.6904 7.77058 22.6904H18.2323C20.7013 22.6904 22.7217 20.67 22.7217 18.2011V7.73933C22.7217 5.27042 20.7013 3.25 18.2323 3.25H18.2334ZM11.3282 17.7201L7.12817 13.52C7.00142 13.3932 7.00142 13.1874 7.12817 13.0607L8.58308 11.6058C8.70983 11.479 8.91567 11.479 9.04242 11.6058L11.5579 14.1213L17.7752 7.90292C17.9019 7.77617 18.1077 7.77617 18.2345 7.90292L19.6894 9.35783C19.8162 9.48458 19.8162 9.69042 19.6894 9.81717L11.7876 17.7201C11.6608 17.8468 11.455 17.8468 11.3282 17.7201Z"
+                  fill="#48925D"
+                />
+              </svg>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón continuar -->
+    <div class="flex justify-end mt-6">
+      <button
+        (click)="confirmAndContinue()"
+        class="bg-[#3D7FB1] text-white px-6 py-2 rounded-md hover:bg-[#003876] transition"
+      >
+        Continuar →
+      </button>
+    </div>
+  </div>
 </section>

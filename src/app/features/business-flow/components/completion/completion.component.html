@@ -1,5 +1,290 @@
-<app-progress-header></app-progress-header>
+<section class="w-full mt-[32px] bg-white rounded-xl shadow-sm">
+  <!-- STEP 1: QR -->
+  <div
+    *ngIf="step === 1"
+    class="bg-white rounded-lg border border-[#DDDEE1] p-6"
+  >
+    <div class="flex items-center mb-4">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="#00A65A"
+        class="mr-2"
+      >
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+      </svg>
+      <h2 class="text-[20px] font-semibold text-[#003366]">
+        Tus <span class="text-[#00A65A] font-semibold">documentos</span> están
+        listos
+      </h2>
+    </div>
 
-<section class="max-w-5xl mx-auto p-6">
-  <!-- QR, resumen final, valoración -->
+    <p class="text-[#343637] text-[15px] leading-[22px] mb-5">
+      Escanea el siguiente código QR para agregar de inmediato los documentos de
+      <span class="text-[#0066CC] font-medium">Tecnología Avanzada S.R.L.</span>
+      de manera digital en tu teléfono móvil.
+    </p>
+
+    <div
+      class="bg-[#E9F2FC] rounded-lg py-8 flex justify-center items-center mb-6"
+    >
+      <img src="assets/qr-example.png" alt="QR Code" class="w-40 h-40" />
+    </div>
+
+    <!-- Bloque gris -->
+    <div
+      class="bg-[#F8F8F8] border border-[#DDDEE1] rounded-lg flex flex-col items-start self-stretch p-[24px]"
+    >
+      <p class="text-[15px] text-[#343637] leading-normal">
+        <span class="text-[#003366] font-semibold">Si aún no lo has hecho</span
+        >, descarga en tu móvil nuestra app. Para acceder a tus documentos
+        digitales, necesitarás tener instalada la aplicación.
+      </p>
+
+      <!-- Contenedor de botones -->
+      <div class="flex flex-wrap items-start gap-[12px] pt-[32px]">
+        <button
+          class="flex justify-center items-center gap-[10px] px-[24px] py-[9px] rounded-full bg-white hover:bg-[#F5F5F5] transition"
+        >
+          <img
+            src="assets/icons/preparation/apple.svg"
+            alt="App Store"
+            class="w-6 h-6"
+          />
+          <span class="text-[15px] font-medium text-[#343637]">App Store</span>
+        </button>
+
+        <button
+          class="flex justify-center items-center gap-[10px] px-[24px] py-[9px] rounded-full bg-white hover:bg-[#F5F5F5] transition"
+        >
+          <img
+            src="assets/icons/preparation/playstore.svg"
+            alt="Google Play"
+            class="w-6 h-6"
+          />
+          <span class="text-[15px] font-medium text-[#343637]"
+            >Google Play</span
+          >
+        </button>
+      </div>
+    </div>
+
+    <!-- Contenedor del texto final + botón -->
+    <div class="flex justify-end items-center gap-[48px] pt-[48px]">
+      <p class="text-[14px] text-[#696A6E] leading-[20px] flex-1">
+        En caso de que no desees descargar la app en este mismo momento,
+        <span class="text-[#0066CC] font-medium cursor-pointer">
+          te enviaremos un correo con este mismo código QR
+        </span>
+        para que puedas agregar tus documentos en tu app móvil en cualquier otro
+        momento.
+      </p>
+
+      <button
+        (click)="goToStep(2)"
+        class="bg-[#003366] text-white font-medium text-[15px] px-[24px] py-[9px] rounded-full flex items-center gap-[8px] hover:bg-[#00264D] transition-colors"
+      >
+        Finalizar proceso
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M5 3l7 5-7 5V3z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Finalizado -->
+  <div
+    *ngIf="step === 2"
+    class="bg-white rounded-lg border border-[#DDDEE1] p-6"
+  >
+    <div class="flex items-start">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="#00A65A"
+        class="mr-2 mt-1"
+      >
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+      </svg>
+      <div>
+        <h2 class="text-[20px] font-semibold text-[#003366] mb-2">
+          Todo está <span class="text-[#00A65A]">listo</span>.
+        </h2>
+        <p class="text-[#343637] text-[15px] mb-5 leading-[22px]">
+          Si no lograste escanear tu código,
+          <span class="text-[#0066CC] font-medium cursor-pointer"
+            >te enviaremos un correo con el QR</span
+          >
+          mostrado anteriormente para que puedas agregar tus documentos en tu
+          app móvil en cualquier otro momento.
+        </p>
+
+        <div
+          class="bg-[#F5F5F5] rounded-lg p-3 text-[#696A6E] text-[14px] mb-5"
+        >
+          Agradeceríamos que nos expresaras cómo fue tu experiencia con este
+          servicio.
+          <span class="text-[#0066CC] font-medium cursor-pointer"
+            >Continúa dejándonos una valoración o un comentario.</span
+          >.
+        </div>
+
+        <button
+          (click)="goToStep(3)"
+          class="bg-[#003366] text-white font-medium text-[15px] px-6 py-2 rounded-full flex items-center gap-2 hover:bg-[#00264D] transition-colors"
+        >
+          Valorar experiencia
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 3l7 5-7 5V3z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Valorar experiencia -->
+  <div
+    *ngIf="step === 3"
+    class="bg-white rounded-lg border border-[#DDDEE1] p-6"
+  >
+    <h2 class="text-[20px] font-semibold text-[#003366] mb-2">
+      Ayúdanos a <span class="text-[#3D7FB1]">mejorar.</span>
+    </h2>
+    <p class="text-[#343637] text-[15px] mb-6">
+      Tu opinión es importante para nosotros. Comparte tu experiencia con el
+      proceso de creación de tu carpeta digital empresarial.
+    </p>
+
+    <!-- Estrellas -->
+    <div class="mb-5">
+      <p class="text-[#343637] font-medium mb-2">
+        ¿Qué tan satisfecho estás con tu experiencia?
+        <span class="text-red-500">*</span>
+      </p>
+      <div class="flex gap-2">
+        <button
+          *ngFor="let star of stars; let i = index"
+          (click)="setRating(i + 1)"
+          (mouseover)="hoverRating = i + 1"
+          (mouseleave)="hoverRating = 0"
+          class="focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            [attr.fill]="
+              i + 1 <= (hoverRating || rating) ? '#FFD700' : '#E0E0E0'
+            "
+            class="w-7 h-7 transition-colors"
+          >
+            <path
+              d="M12 .587l3.668 7.431L24 9.587l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.434 0 9.587l8.332-1.569z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Comentario opcional -->
+    <div class="mb-6">
+      <p class="text-[#343637] font-medium mb-2">
+        ¿Cómo podríamos mejorar su experiencia?
+        <span class="text-[#696A6E] text-sm">(opcional)</span>
+      </p>
+      <textarea
+        [(ngModel)]="comment"
+        rows="3"
+        placeholder="Comparta comentarios, sugerencias o cualquier problema que haya experimentado..."
+        class="w-full border border-[#DDDEE1] rounded-lg p-3 text-[14px] text-[#343637] focus:outline-none focus:ring-1 focus:ring-[#3D7FB1]"
+      ></textarea>
+    </div>
+
+    <!-- Botón -->
+    <div class="flex justify-end">
+      <button
+        [disabled]="!rating"
+        (click)="submitFeedback()"
+        class="px-6 py-2 rounded-full text-white font-medium flex items-center gap-2 transition-colors"
+        [ngClass]="
+          rating
+            ? 'bg-[#003366] hover:bg-[#00264D]'
+            : 'bg-[#B0C0D0] cursor-not-allowed'
+        "
+      >
+        Valorar y concluir
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- STEP 4: Modal de confirmación -->
+  <div
+    *ngIf="showModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+  >
+    <div
+      class="bg-white rounded-lg shadow-lg w-[400px] p-8 text-center animate-fade-in"
+    >
+      <div class="flex justify-center mb-4">
+        <div
+          class="w-8 h-8 flex items-center justify-center bg-[#003876] text-white rounded"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="text-[#003366] text-[20px] font-semibold mb-2">
+        Valoración enviada
+      </h2>
+      <p class="text-[#343637] text-[15px] leading-[22px] mb-6">
+        Gracias por tu feedback. Cada opinión nos ayuda a construir una mejor
+        experiencia y servicio.
+      </p>
+
+      <button
+        (click)="returnToPortal()"
+        class="bg-[#003876] text-white px-8 py-2 rounded-full font-medium hover:bg-[#002A55] transition"
+      >
+        Volver al portal
+      </button>
+    </div>
+  </div>
 </section>
