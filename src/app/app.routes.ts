@@ -18,6 +18,11 @@ export const routes: Routes = [
             './features/business-flow/onboarding-container/onboarding-container.component'
           ).then((m) => m.OnboardingContainerComponent),
       },
+      {
+        path: '**',
+        redirectTo: 'business-flow',
+        pathMatch: 'full',
+      },
     ],
   },
 ];
